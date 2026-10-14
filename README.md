@@ -40,7 +40,7 @@ e o sublinhado nunca são removidos.
 
 ## Utilizar sem instalar o Python
 
-1. Abra a secção **[https://github.com/Pedro-M-Teixeira/formatador-docx-modelo/commits/v1.0.0)]** deste repositório.
+1. Abra a secção **[https://github.com/Pedro-M-Teixeira/formatador-docx-modelo/releases/latest)]** deste repositório.
 2. Descarregue o ficheiro correspondente ao seu sistema:
    - Windows → `FormatadorDocx-Windows.zip`
    - macOS → `FormatadorDocx-macOS.zip`

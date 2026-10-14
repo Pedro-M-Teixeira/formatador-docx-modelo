@@ -1236,7 +1236,7 @@ def iniciar_interface():
             self.limpeza = {g: tk.BooleanVar(value=False) for g, _ in ROTULOS_LIMPEZA}
             self.a_trabalhar = False
 
-            raiz.title("Formatar documentos Word a partir de um modelo")
+            raiz.title("Formatar documentos Word a partir de um modelo >>> PEDRO TEIXEIRA @@ 2026 ")
             raiz.minsize(820, 660)
             try:
                 raiz.call("ttk::style", "theme", "use", "clam")

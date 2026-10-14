@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# PyInstaller
+build/
+dist/
+*.manifest
+
+# Resultados de testes e documentos
+*_formatado.docx
+*.bak
+saida*/
+teste_local/
+
+# Sistemas operativos / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

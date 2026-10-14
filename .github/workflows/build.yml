@@ -1,0 +1,148 @@
+name: Compilar executáveis
+
+# Compila a aplicação em Windows, macOS e Linux.
+#  - em cada push/PR: produz os executáveis como "artifacts" (descarregáveis no
+#    separador Actions, úteis para testar);
+#  - ao publicar uma etiqueta "vX.Y.Z": cria automaticamente uma Release com os
+#    ficheiros prontos a distribuir a quem não tem Python instalado.
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compilar:
+    name: ${{ matrix.etiqueta }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            etiqueta: Windows
+            pacote: FormatadorDocx-Windows
+          - os: macos-latest
+            etiqueta: macOS
+            pacote: FormatadorDocx-macOS
+          - os: ubuntu-latest
+            etiqueta: Linux
+            pacote: FormatadorDocx-Linux
+
+    steps:
+      - name: Obter o código
+        uses: actions/checkout@v4
+
+      - name: Instalar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar o tkinter (apenas Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y python3-tk
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller==6.11.1
+
+      - name: Verificar se o código compila
+        run: python -m py_compile formatar_docx_modelo_gui.py formatar_docx_por_modelo.py
+
+      - name: Teste de fumo (processa um documento de exemplo)
+        run: python scripts/teste_fumo.py
+
+      - name: Gerar o executável
+        run: pyinstaller build.spec --noconfirm --clean
+
+      - name: Empacotar (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path pacote | Out-Null
+          Copy-Item dist/FormatadorDocx.exe pacote/
+          Copy-Item README.md, LICENSE pacote/
+          Compress-Archive -Path pacote/* -DestinationPath ${{ matrix.pacote }}.zip -Force
+
+      - name: Empacotar (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          mkdir -p pacote
+          if [ -d "dist/FormatadorDocx.app" ]; then
+            cp -R dist/FormatadorDocx.app pacote/
+          else
+            cp dist/FormatadorDocx pacote/
+          fi
+          cp README.md LICENSE pacote/
+          cd pacote && zip -r ../${{ matrix.pacote }}.zip . && cd ..
+
+      - name: Empacotar (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p pacote
+          cp dist/FormatadorDocx pacote/
+          chmod +x pacote/FormatadorDocx
+          cp README.md LICENSE pacote/
+          tar -czf ${{ matrix.pacote }}.tar.gz -C pacote .
+
+      - name: Carregar o resultado
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.pacote }}
+          path: |
+            ${{ matrix.pacote }}.zip
+            ${{ matrix.pacote }}.tar.gz
+          if-no-files-found: error
+          retention-days: 30
+
+  publicar:
+    name: Publicar Release
+    needs: compilar
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recolher os executáveis
+        uses: actions/download-artifact@v4
+        with:
+          path: entregaveis
+          merge-multiple: true
+
+      - name: Listar o que vai ser publicado
+        run: ls -la entregaveis
+
+      - name: Criar a Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Formatador DOCX ${{ github.ref_name }}
+          draft: false
+          generate_release_notes: true
+          files: entregaveis/*
+          body: |
+            ## Formatador DOCX por Modelo — ${{ github.ref_name }}
+
+            Aplica a formatação de um documento Word modelo (estilos, cabeçalhos
+            com logótipos, rodapés, margens e orientação) a um ou vários
+            documentos, sem alterar o respectivo conteúdo.
+
+            ### Como instalar
+            **Windows** — descarregue `FormatadorDocx-Windows.zip`, extraia e
+            execute `FormatadorDocx.exe`. Não é preciso instalar o Python.
+            Se o SmartScreen avisar que o editor é desconhecido, escolha
+            «Mais informações» → «Executar mesmo assim» (o executável não está
+            assinado digitalmente).
+
+            **macOS** — descarregue `FormatadorDocx-macOS.zip`, extraia e, na
+            primeira execução, clique no ficheiro com o botão direito →
+            «Abrir», para contornar o Gatekeeper.
+
+            **Linux** — descarregue `FormatadorDocx-Linux.tar.gz`, extraia e
+            execute `./FormatadorDocx` (requer `python3-tk` no sistema apenas
+            se usar o código-fonte, não o executável).

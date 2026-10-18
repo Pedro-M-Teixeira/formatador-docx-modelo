@@ -1,5 +1,5 @@
 # Formatador DOCX por Modelo
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23457134.svg)](https://doi.org/10.5281/zenodo.23457134)
 [![Compilar executáveis](https://github.com/UTILIZADOR/REPOSITORIO/actions/workflows/build.yml/badge.svg)](https://github.com/UTILIZADOR/REPOSITORIO/actions/workflows/build.yml)
 [![Licença: MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
 

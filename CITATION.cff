@@ -5,8 +5,7 @@ cff-version: 1.2.0
 title: 'Formatador documentos docx (Version v1.0.2) '
 message: >-
   Aplica a formatação de um documento Word modelo a outros
-  documentos. Deixe em «Public» para que qualquer pessoa
-  possa descarregar a aplicação.
+  documentos. 
 type: software
 authors:
   - given-names: Pedro Miguel
@@ -17,4 +16,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.23457133
     description: Zenodo
+abstract: >-
+  Aplica a formatação de um documento Word modelo a outros
+  documentos.
+commit: 'Zenodo. https://doi.org/10.5281/zenodo.23457134'
+version: 1.2.0
 date-released: '2026-10-18'

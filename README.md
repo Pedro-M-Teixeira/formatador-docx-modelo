@@ -5,7 +5,6 @@
 Cita este software: 
 Marques Teixeira, P. (2026). Formatador documentos docx (Version v1.0.2) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23457134
 
-[![Compilar executáveis](https://github.com/UTILIZADOR/REPOSITORIO/actions/workflows/build.yml/badge.svg)](https://github.com/UTILIZADOR/REPOSITORIO/actions/workflows/build.yml)
 
 Aplica a formatação de um documento Word **modelo** a um ou vários documentos
 `.docx`, **sem alterar o conteúdo destes**. Pensado para quem tem de normalizar

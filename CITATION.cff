@@ -2,19 +2,19 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: Formatador Docx
+title: 'Formatador documentos docx (Version v1.0.2) '
 message: >-
   Aplica a formatação de um documento Word modelo a outros
   documentos. Deixe em «Public» para que qualquer pessoa
   possa descarregar a aplicação.
 type: software
 authors:
-  - given-names: Pedro
-    name-particle: Miguel
+  - given-names: Pedro Miguel
     family-names: Marques Teixeira
     email: pmtex69@gmail.com
     orcid: 'https://orcid.org/0009-0005-7035-6736'
 identifiers:
   - type: doi
     value: 10.5281/zenodo.23457133
-repository-code: 'https://github.com/Pedro-M-Teixeira/formatador-docx-modelo'
+    description: Zenodo
+date-released: '2026-10-18'

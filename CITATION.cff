@@ -2,7 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: 'Formatador documentos docx (Version v1.0.2) '
+title: Formatador de documentos docx
 message: >-
   Aplica a formatação de um documento Word modelo a outros
   documentos. 
@@ -16,9 +16,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.23457133
     description: Zenodo
+repository-code: 'https://doi.org/10.5281/zenodo.23457134'
 abstract: >-
   Aplica a formatação de um documento Word modelo a outros
   documentos.
-commit: 'Zenodo. https://doi.org/10.5281/zenodo.23457134'
 version: 1.2.0
 date-released: '2026-10-18'

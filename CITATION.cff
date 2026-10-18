@@ -1,0 +1,16 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: formatador-docx-modelo
+message: >-
+  Aplica a formatação de um documento Word modelo a outros
+  documentos. Deixe em «Public» para que qualquer pessoa
+  possa descarregar a aplicação.
+type: software
+authors:
+  - given-names: Pedro
+    name-particle: Miguel
+    family-names: Marques Teixeira
+    email: pmtex69@gmail.com
+    orcid: 'https://orcid.org/0009-0005-7035-6736'

@@ -1,7 +1,9 @@
 # Formatador DOCX por Modelo
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23457134.svg)](https://doi.org/10.5281/zenodo.23457134)
-[![Compilar executáveis](https://github.com/UTILIZADOR/REPOSITORIO/actions/workflows/build.yml/badge.svg)](https://github.com/UTILIZADOR/REPOSITORIO/actions/workflows/build.yml)
+
 [![Licença: MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
+
+[![Compilar executáveis](https://github.com/UTILIZADOR/REPOSITORIO/actions/workflows/build.yml/badge.svg)](https://github.com/UTILIZADOR/REPOSITORIO/actions/workflows/build.yml)
 
 Aplica a formatação de um documento Word **modelo** a um ou vários documentos
 `.docx`, **sem alterar o conteúdo destes**. Pensado para quem tem de normalizar
